@@ -10,6 +10,7 @@ type Task = {
 
 export function App() {
   const [tasks, setTasks] = useState<Task[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     getTasks()
@@ -19,6 +20,7 @@ export function App() {
     const { data } = await axios.get('/api/tasks')
 
     setTasks(data.tasks)
+    setIsLoading(false)
   }
 
   return (
@@ -26,7 +28,7 @@ export function App() {
       <h1>Tasks</h1>
 
       <div className="container">
-        {tasks.map(task => (
+        {isLoading ? <pre>Carregando...</pre> : tasks.map(task => (
           <div key={task.id} className="task">
             <h2>{task.name}</h2>
             <p>{task.status}</p>
