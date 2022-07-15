@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type Task = {
   id: number
@@ -11,6 +11,10 @@ type Task = {
 export function App() {
   const [tasks, setTasks] = useState<Task[]>([])
 
+  useEffect(() => {
+    getTasks()
+  }, [])
+
   async function getTasks() {
     const { data } = await axios.get('/api/tasks')
 
@@ -20,8 +24,6 @@ export function App() {
   return (
     <div>
       <h1>Tasks</h1>
-
-      <button onClick={getTasks}>Search tasks</button>
 
       <div className="container">
         {tasks.map(task => (
