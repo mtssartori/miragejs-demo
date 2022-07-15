@@ -23,13 +23,15 @@ export function App() {
 
       <button onClick={getTasks}>Search tasks</button>
 
-      {tasks.map(task => (
-        <div key={task.id}>
-          <h2>{task.name}</h2>
-          <p>{task.status}</p>
-          <small>{task.job_id}</small>
-        </div>
-      ))}
+      <div className="container">
+        {tasks.map(task => (
+          <div key={task.id} className="task">
+            <h2>{task.name}</h2>
+            <p>{task.status}</p>
+            <small>{task.job_id}</small>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
