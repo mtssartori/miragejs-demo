@@ -1,11 +1,4 @@
-import { createServer, Factory, Model, Response, ActiveModelSerializer } from 'miragejs'
-
-type Task = {
-  id: number
-  name: string
-  status: string
-  job_id: number
-}
+import { createServer } from 'miragejs'
 
 export function makeServer() {
   const server = createServer({
